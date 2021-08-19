@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element label="Weebpal Log Time" max_length="40" name="x_613320_google_in_weebpal_log_time" sizeclass="0" type="collection">
+        <element attributes="edge_encryption_enabled=true" label="Comment" max_length="200" name="comment" type="string"/>
+        <element attributes="edge_encryption_enabled=true" label="Name" max_length="255" name="name" type="string_full_utf8"/>
+        <element label="Number" max_length="40" name="number" type="integer"/>
+        <element attributes="edge_encryption_enabled=true" label="Project" max_length="40" name="project" type="string"/>
+        <element label="Spent time" max_length="40" name="spent_time" type="float"/>
+        <element attributes="edge_encryption_enabled=true" choice="1" label="Status" max_length="40" name="status" type="string">
+            <choice>
+                <element inactive_on_update="false" label="completed" sequence="0" value="Completed"/>
+                <element inactive_on_update="false" label="on_going" sequence="1" value="On going"/>
+                <element inactive_on_update="false" label="stop_but_not_completed" sequence="2" value="Stop but not completed"/>
+            </choice>
+        </element>
+        <element attributes="edge_encryption_enabled=true" label="Task link" max_length="300" name="task_link" type="string"/>
+        <element attributes="edge_encryption_enabled=true" label="Task status" max_length="200" name="task_status" type="string"/>
+        <element attributes="edge_encryption_enabled=true" label="Task title" max_length="100" name="task_title" type="string"/>
+    </element>
+</database>
