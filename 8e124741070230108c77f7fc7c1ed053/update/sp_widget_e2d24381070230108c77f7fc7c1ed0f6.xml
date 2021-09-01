@@ -20,6 +20,10 @@
     c.data.action  ="download_CSV_file";
     c.server.update();
   }
+  $scope.getCSVFiles = function() {
+    c.data.action  ="get_CSV_files";
+    c.server.update();
+  }
 };]]></client_script>
         <controller_as>c</controller_as>
         <css/>
@@ -113,17 +117,46 @@
    }
    if (input.action == 'download_CSV_file') {
     var request = new sn_ws.RESTMessageV2();
-    request.setEndpoint('https://docs.google.com/spreadsheets/d/17ImoqUVI3aSleZycgcs2AKYbD5Gi6T8DyiXNNNurWBM/gviz/tq?tqx=out:csv&sheet=632082016');
+    request.setEndpoint('https://docs.google.com/spreadsheets/d/17ImoqUVI3aSleZycgcs2AKYbD5Gi6T8DyiXNNNurWBM/export?format=xlsx&id=17ImoqUVI3aSleZycgcs2AKYbD5Gi6T8DyiXNNNurWBM&gid=1006502702');
     request.setHttpMethod('GET');
-    request.setRequestHeader('Content-Type', 'application/json');
-    request.setQueryParameter('mimeType', "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+    // request.setRequestHeader('Content-Type', 'application/json');
+    // request.setQueryParameter('mimeType', "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
     request.setRequestHeader('Authorization', "Bearer " + data.token);
-    request.saveResponseBodyAsAttachment('x_613320_google_in_weebpal_log_time_schedule_job','d9382415070630108c77f7fc7c1ed05e', 'file.csv');
+    request.saveResponseBodyAsAttachment('x_613320_google_in_weebpal_log_time_schedule_job','d9382415070630108c77f7fc7c1ed05e', 'file.xlsx');
     var response = request.execute();
   
     var newAttachmentSysId= response.getResponseAttachmentSysid();
     console.log(newAttachmentSysId);
     console.log(response.getStatusCode());
+   }
+
+   if (input.action == 'get_CSV_files') {
+    var request = new sn_ws.RESTMessageV2();
+    request.setEndpoint('https://sheets.googleapis.com/v4/spreadsheets/17ImoqUVI3aSleZycgcs2AKYbD5Gi6T8DyiXNNNurWBM');
+    request.setHttpMethod('GET');
+    request.setRequestHeader('Content-Type', 'application/json');
+    request.setRequestHeader('Authorization', "Bearer " + data.token);
+    var response = request.execute();
+    console.log(response.getStatusCode());
+    var sheets = JSON.parse(response.getBody())['sheets'];
+    var gr = new GlideRecord('x_613320_google_in_import_sheet_track');
+    sheets.forEach(function(item) {
+      if (item.properties) {
+   
+        gr.addQuery('sheet_id', item['properties']['sheetId']);
+        gr.query();
+        if (!gr.next()) {
+          gr.initialize();
+          gr.sheet_id = item['properties']['sheetId'];
+          gr.index = item['properties']['index'];
+          gr.sheet_type = item['properties']['sheetType'];
+          gr.title = item['properties']['title'];
+          gr.status = 'open';
+          gr.insert();
+        }
+      }
+     
+    })
    }
   }
   
@@ -134,18 +167,18 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-08-17 02:22:45</sys_created_on>
         <sys_id>e2d24381070230108c77f7fc7c1ed0f6</sys_id>
-        <sys_mod_count>51</sys_mod_count>
+        <sys_mod_count>68</sys_mod_count>
         <sys_name>Oauth2</sys_name>
         <sys_package display_value="Google integration" source="x_613320_google_in">8e124741070230108c77f7fc7c1ed053</sys_package>
         <sys_policy/>
         <sys_scope display_value="Google integration">8e124741070230108c77f7fc7c1ed053</sys_scope>
         <sys_update_name>sp_widget_e2d24381070230108c77f7fc7c1ed0f6</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-08-19 08:43:17</sys_updated_on>
+        <sys_updated_on>2021-08-31 03:31:45</sys_updated_on>
         <template><![CDATA[<div>
 <!-- your widget template -->
 <a href="https://accounts.google.com/o/oauth2/v2/auth?
-scope=https://www.googleapis.com/auth/cloud-platform&
+scope=https://www.googleapis.com/auth/spreadsheets&
 access_type=offline&
 include_granted_scopes=true&
 response_type=code&
@@ -165,6 +198,7 @@ client_id=1079638961967-u14p7rm1acjghidd98t3qp9kcrnlrodn.apps.googleusercontent.
 </button>
 <button ng-click = "downloadCSVFile()">
   Download CSV file
-</button>]]></template>
+</button>
+<button ng-click = "getCSVFiles()">Get csv list in sheet</button>]]></template>
     </sp_widget>
 </record_update>

@@ -44,7 +44,7 @@
         <push_message_only>false</push_message_only>
         <recipient_fields/>
         <recipient_groups/>
-        <recipient_users>tuanvt.weebpal@gmail.com</recipient_users>
+        <recipient_users>tuanvt.weebpal@gmail.com,phat101299@gmail.com</recipient_users>
         <reply_to/>
         <send_self>true</send_self>
         <sms_alternate/>
@@ -57,7 +57,7 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>6c3284a1070230108c77f7fc7c1ed0fe</sys_id>
-        <sys_mod_count>0</sys_mod_count>
+        <sys_mod_count>1</sys_mod_count>
         <sys_name>Test notification</sys_name>
         <sys_overrides/>
         <sys_package display_value="Google integration" source="x_613320_google_in">8e124741070230108c77f7fc7c1ed053</sys_package>
@@ -65,7 +65,7 @@
         <sys_scope display_value="Google integration">8e124741070230108c77f7fc7c1ed053</sys_scope>
         <sys_update_name>sysevent_email_action_6c3284a1070230108c77f7fc7c1ed0fe</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-08-18 01:39:25</sys_updated_on>
+        <sys_updated_on>2021-08-19 12:40:28</sys_updated_on>
         <sys_version>2</sys_version>
         <template display_value="Unsubscribe and Preferences">7ed0481f3b0b2200c869c2c703efc487</template>
         <type>email</type>
