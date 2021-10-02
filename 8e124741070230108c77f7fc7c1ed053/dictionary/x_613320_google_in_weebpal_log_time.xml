@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?><database>
-    <element label="Weebpal Log Time" max_length="40" name="x_613320_google_in_weebpal_log_time" sizeclass="319" type="collection">
+    <element label="Weebpal Log Time" max_length="40" name="x_613320_google_in_weebpal_log_time" sizeclass="338" type="collection">
         <element attributes="edge_encryption_enabled=true" label="Comment" max_length="200" name="comment" type="string"/>
         <element attributes="edge_encryption_enabled=true" label="Name" max_length="255" name="name" type="string_full_utf8"/>
         <element label="Sheet title" max_length="255" name="sheet_title" type="string_full_utf8"/>

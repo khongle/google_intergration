@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?><database>
-    <element extends="sys_import_set_row" label="Weebpal Log Time Staging" max_length="40" name="x_613320_google_in_weebpal_log_time_staging" sizeclass="111" type="collection">
+    <element extends="sys_import_set_row" label="Weebpal Log Time Staging" max_length="40" name="x_613320_google_in_weebpal_log_time_staging" sizeclass="0" type="collection">
         <element attributes="edge_encryption_enabled=true" label="Ghi chÃº thÃªm (náº¿u cáº§n) Ai muá»‘n comment thÃªm gÃ¬ cá»© comment" max_length="40" name="u_ghi_chãº_thã___cá___comment" type="string"/>
         <element attributes="edge_encryption_enabled=true" label="Ghi chÃº thÃªm (náº¿u cáº§n)" max_length="40" name="u_ghi_chãº_thãªm__náº_u_cáº_n_" type="string"/>
         <element attributes="edge_encryption_enabled=true" label="Ghi chú thêm (nếu cần)" max_length="40" name="u_ghi_chú_thêm__nếu_cần_" type="string"/>
